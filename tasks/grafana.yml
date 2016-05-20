@@ -1,0 +1,30 @@
+- name: Imports grafana apt key
+  apt_key: 
+    url: https://packagecloud.io/gpg.key
+    state: present
+
+- name: Adds influxdb repository
+  apt_repository:
+    repo: "deb https://packagecloud.io/grafana/stable/debian/ wheezy main
+"
+    state: present
+    update_cache: yes
+
+- name: Installs grafana
+  apt:
+    pkg: grafana
+    state: present
+
+- name: Configures grafana
+  template:
+    src: grafana.ini.j2
+    dest: /etc/grafana/grafana.ini
+    owner: root
+    group: grafana
+    mode: 0640
+  notify: ['Restart grafana']
+
+- name: Ensure grafana starts at boot
+  service:
+    name: grafana-server
+    enabled: true
