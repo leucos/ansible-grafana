@@ -3,7 +3,7 @@
     url: https://packagecloud.io/gpg.key
     state: present
 
-- name: Adds influxdb repository
+- name: Adds grafana repository
   apt_repository:
     repo: "deb https://packagecloud.io/grafana/stable/debian/ wheezy main
 "
