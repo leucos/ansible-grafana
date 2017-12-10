@@ -140,7 +140,7 @@ disable_gravatar = {{ grafana_disable_gravatar }}
 
 {% for stortype, storvalue in grafana_external_image_storage.items() %}
 [external_image_storage]
-  provider = {{ stortype }}
+provider = {{ stortype }}
 
 [external_image_storage.{{ stortype }}]
 {%   for key, value in storvalue.items() %}
