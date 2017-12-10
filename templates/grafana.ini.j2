@@ -138,12 +138,12 @@ disable_gravatar = {{ grafana_disable_gravatar }}
 ;external_snapshot_url = https://snapshots-origin.raintank.io
 ;external_snapshot_name = Publish to snapshot.raintank.io
 
-{% for stortype, storvalue in grafana_external_image_storage %}
+{% for stortype, storvalue in grafana_external_image_storage.items() %}
 [external_image_storage]
   provider = {{ stortype }}
 
 [external_image_storage.{{ stortype }}]
-{%   for key, value in stovalue.items() %}
+{%   for key, value in storvalue.items() %}
 {{ key }} = {{ value }}
 {%   endfor %}
 {% endfor %}
