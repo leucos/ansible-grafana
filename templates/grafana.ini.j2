@@ -37,7 +37,7 @@ domain = {{ grafana_domain }}
 
 # Redirect to correct domain if host header does not match domain
 # Prevents DNS rebinding attacks
-;enforce_domain = false
+enforce_domain = {{ grafana_enforce_domain }}
 
 # The full public facing url
 ;root_url = %(protocol)s://%(domain)s:%(http_port)s/
@@ -137,6 +137,16 @@ disable_gravatar = {{ grafana_disable_gravatar }}
 ;external_enabled = true
 ;external_snapshot_url = https://snapshots-origin.raintank.io
 ;external_snapshot_name = Publish to snapshot.raintank.io
+
+{% for stortype, storvalue in grafana_external_image_storage %}
+[external_image_storage]
+  provider = {{ stortype }}
+
+[external_image_storage.{{ stortype }}]
+{%   for key, value in stovalue.items() %}
+{{ key }} = {{ value }}
+{%   endfor %}
+{% endfor %}
 
 #################################### Users ####################################
 [users]

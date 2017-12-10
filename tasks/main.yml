@@ -1,1 +1,3 @@
-- include: grafana.yml tags=grafana
+- include: grafana.yml
+  tags:
+    - grafana

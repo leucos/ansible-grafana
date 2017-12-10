@@ -4,6 +4,7 @@ grafana_http_addr: ""
 grafana_http_port: 3000
 grafana_enable_gzip: false
 grafana_domain: "{{ ansible_fqdn }}"
+grafana_enforce_domain: "false"
 
 # Database configuration
 grafana_database_type: sqlite3
@@ -77,3 +78,14 @@ grafana_smtp_from_address: admin@grafana.localhost
 
 # Grafana Emails
 grafana_welcome_email_on_sign_up: "false"
+
+# External image storage
+## Only one is supported!
+grafana_external_image_storage: {}
+# e.g.
+# grafana_external_image_storage:
+#   s3:
+#     bucket_url: https://foo.s3-eu-west-1.amazonaws.com/
+#     access_key: ...
+#     secret_key: ...
+#
