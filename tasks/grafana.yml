@@ -1,14 +1,19 @@
+---
+- name: Installs apt-transport-https
+  apt:
+    pkg: apt-transport-https
+    state: present
+
 - name: Imports grafana apt key
-  apt_key: 
+  apt_key:
     url: https://packagecloud.io/gpg.key
     state: present
 
 - name: Adds grafana repository
   apt_repository:
-    repo: "deb https://packagecloud.io/grafana/stable/debian/ wheezy main
-"
+    repo: "deb https://packagecloud.io/grafana/stable/debian/ wheezy main"
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Installs grafana
   apt:

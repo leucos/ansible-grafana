@@ -1,0 +1,3 @@
+---
+grafana_http_port: 3012
+grafana_http_addr: 127.0.0.30
