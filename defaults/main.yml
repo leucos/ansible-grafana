@@ -17,15 +17,15 @@
 # Database configuration
 grafana_database_type: sqlite3
 # grafana_database_host:
-# grafana_database_name: 
-# grafana_database_user: 
+# grafana_database_name:
+# grafana_database_user:
 # grafana_database_password:
 
 # Security
 grafana_disable_gravatar: "true"
 # grafana_admin_user: 
 # grafana_admin_password: 
-# grafana_secret_key: 
+# grafana_secret_key:
 # grafana_login_remember_days:
 # grafana_cookie_username: 
 # grafana_cookie_remember_name: 
@@ -34,7 +34,7 @@ grafana_disable_gravatar: "true"
 grafana_allow_sign_up: "false"
 # grafana_allow_org_create:
 # grafana_auto_assign_org:
-# grafana_auto_assign_org_role: 
+# grafana_auto_assign_org_role:
 # grafana_login_hint:
 
 # Auth anonymous
@@ -44,7 +44,7 @@ grafana_auth_anonymous_enabled: "false"
 
 # Auth GitHub
 grafana_auth_github_enabled: "false"
-# grafana_auth_github_allow_sign_up: 
+# grafana_auth_github_allow_sign_up:
 # grafana_auth_github_client_id:
 # grafana_auth_github_client_secret:
 # grafana_auth_github_scopes: user:email,read:org
