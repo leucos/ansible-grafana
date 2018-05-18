@@ -1,4 +1,9 @@
 ---
+- include: check_vars.yml
+  tags:
+    - grafana
+    - check
+
 - include: grafana.yml
   tags:
     - grafana

@@ -10,37 +10,65 @@
 [paths]
 # Path to where grafana can store temp files, sessions, and the sqlite3 db (if that is used)
 #
+{% if grafana_data_path is defined %}
+data = "{{ grafana_data_path }}"
+{% else %}
 ;data = /var/lib/grafana
+{% endif %}
 #
 # Directory where grafana can store logs
 #
+{% if grafana_log_path is defined %}
+logs = "{{ grafana_log_path }}"
+{% else %}
 ;logs = /var/log/grafana
+{% endif %}
 #
 # Directory where grafana will automatically scan and look for plugins
 #
+{% if grafana_plugins_path is defined %}
+plugins = {{ grafana_plugins_path }}
+{% else %}
 ;plugins = /var/lib/grafana/plugins
+{% endif %}
+#
+# Directory where grafana will automatically provision dashboards from
+#
+{% if grafana_provisioning_path is defined %}
+provisioning = {{ grafana_provisioning_path }}
+{% else %}
+;provisioning = /etc/grafana/provisioning/
+{% endif %}
 
 #
 #################################### Server ####################################
 [server]
 # Protocol (http or https)
+{% if grafana_http_protocol is defined %}
+plugins = {{ grafana_http_protocol }}
+{% else %}
 ;protocol = http
+{% endif %}
 
 # The ip address to bind to, empty will bind to all interfaces
-http_addr = {{ grafana_http_addr }}
+{% if grafana_http_addr is defined %}http_addr = {{ grafana_http_addr }}{% endif %}
 
 # The http port  to use
-http_port = {{ grafana_http_port }}
+{% if grafana_http_port is defined %}http_port = {{ grafana_http_port }}{% endif %}
 
 # The public facing domain name used to access grafana from a browser
-domain = {{ grafana_domain }}
+{% if grafana_domain is defined %}domain = {{ grafana_domain }}{% endif %}
 
 # Redirect to correct domain if host header does not match domain
 # Prevents DNS rebinding attacks
-enforce_domain = {{ grafana_enforce_domain }}
+{% if grafana_enforce_domain is defined %}enforce_domain = {{ grafana_enforce_domain }}{% endif %}
 
 # The full public facing url
-;root_url = %(protocol)s://%(domain)s:%(http_port)s/
+{% if grafana_root_url is defined %}
+root_url = {{ grafana_root_url }}
+{% else %}
+root_url = %(protocol)s://%(domain)s:%(http_port)s/
+{% endif %}
 
 # Log web requests
 ;router_logging = false
@@ -49,11 +77,11 @@ enforce_domain = {{ grafana_enforce_domain }}
 ;static_root_path = public
 
 # enable gzip
-enable_gzip = {{ grafana_enable_gzip }}
+{% if grafana_enable_gzip is defined %}enable_gzip = {{ grafana_enable_gzip }}{% endif %}
 
 # https certs & key file
-;cert_file =
-;cert_key =
+{% if grafana_certificate_file is defined %}cert_file = "{{ grafana_certificate_file }}"{% endif %}
+{% if grafana_certificate_key is defined %}cert_key = "{{ grafana_certificate_key }}"{% endif %}
 
 #################################### Database ####################################
 [database]
@@ -119,12 +147,12 @@ admin_user = {{ grafana_admin_user }}
 admin_password = {{ grafana_admin_password }}
 
 # used for signing
-secret_key = {{ grafana_secret_key }}
+{% if grafana_secret_key is defined %}secret_key = {{ grafana_secret_key }}{% endif %}
 
 # Auto-login remember days
-login_remember_days = {{ grafana_login_remember_days }}
-cookie_username = {{ grafana_cookie_username }}
-cookie_remember_name = {{ grafana_cookie_remember_name }}
+{% if grafana_login_remember_days is defined %}login_remember_days = {{ grafana_login_remember_days }}{% endif %}
+{% if grafana_cookie_username is defined %}cookie_username = {{ grafana_cookie_username }}{% endif %}
+{% if grafana_cookie_remember_name is defined %}cookie_remember_name = {{ grafana_cookie_remember_name }}{% endif %}
 
 # disable gravatar profile images
 disable_gravatar = {{ grafana_disable_gravatar }}
@@ -154,16 +182,16 @@ provider = {{ stortype }}
 allow_sign_up = {{ grafana_allow_sign_up }}
 
 # Allow non admin users to create organizations
-allow_org_create = {{ grafana_allow_org_create }}
+{% if grafana_allow_org_create is defined %}allow_org_create = {{ grafana_allow_org_create }}{% endif %}
 
 # Set to true to automatically assign new users to the default organization (id 1)
-auto_assign_org = {{ grafana_auto_assign_org }}
+{% if grafana_auto_assign_org is defined %}auto_assign_org = {{ grafana_auto_assign_org }}{% endif %}
 
 # Default role new users will be automatically assigned (if disabled above is set to true)
-auto_assign_org_role = {{ grafana_auto_assign_org_role }}
+{% if grafana_auto_assign_org_role is defined %}auto_assign_org_role = {{ grafana_auto_assign_org_role }}{% endif %}
 
 # Background text for the user field on the login page
-login_hint = {{ grafana_login_hint }}
+{% if grafana_login_hint is defined %}login_hint = {{ grafana_login_hint }}{% endif %}
 
 #################################### Anonymous Auth ##########################
 [auth.anonymous]
@@ -171,35 +199,35 @@ login_hint = {{ grafana_login_hint }}
 enabled = {{ grafana_auth_anonymous_enabled }}
 
 # specify organization name that should be used for unauthenticated users
-org_name = {{ grafana_auth_anonymous_org_name }}
+{% if grafana_auth_anonymous_org_name is defined %}org_name = {{ grafana_auth_anonymous_org_name }}{% endif %}
 
 # specify role for unauthenticated users
-org_role = {{ grafana_auth_anonymous_org_role }}
+{% if grafana_auth_anonymous_org_role is defined %}org_role = {{ grafana_auth_anonymous_org_role }}{% endif %}
 
 #################################### Github Auth ##########################
 [auth.github]
 enabled = {{ grafana_auth_github_enabled }}
-allow_sign_up = {{ grafana_auth_github_allow_sign_up }}
-client_id = {{ grafana_auth_github_client_id }}
-client_secret = {{ grafana_auth_github_client_secret }}
-scopes = {{ grafana_auth_github_scopes }}
-auth_url = {{ grafana_auth_github_auth_url }}
-token_url = {{ grafana_auth_github_token_url }}
-api_url = {{ grafana_auth_github_api_url }}
-team_ids = {{ grafana_auth_github_team_ids }}
-allowed_organizations = {{ grafana_auth_github_allowed_organizations }}
+{% if grafana_auth_github_allow_sign_up is defined         %}allow_sign_up = {{ grafana_auth_github_allow_sign_up }}{% endif %}
+{% if grafana_auth_github_client_id is defined             %}client_id = {{ grafana_auth_github_client_id }}{% endif %}
+{% if grafana_auth_github_client_secret is defined         %}client_secret = {{ grafana_auth_github_client_secret }}{% endif %}
+{% if grafana_auth_github_scopes is defined                %}scopes = {{ grafana_auth_github_scopes }}{% endif %}
+{% if grafana_auth_github_auth_url is defined              %}auth_url = {{ grafana_auth_github_auth_url }}{% endif %}
+{% if grafana_auth_github_token_url is defined             %}token_url = {{ grafana_auth_github_token_url }}{% endif %}
+{% if grafana_auth_github_api_url is defined               %}api_url = {{ grafana_auth_github_api_url }}{% endif %}
+{% if grafana_auth_github_team_ids is defined              %}team_ids = {{ grafana_auth_github_team_ids }}{% endif %}
+{% if grafana_auth_github_allowed_organizations is defined %}allowed_organizations = {{ grafana_auth_github_allowed_organizations }}{% endif %}
 
 #################################### Google Auth ##########################
 [auth.google]
 enabled = {{ grafana_auth_google_enabled }}
-allow_sign_up = {{ grafana_auth_google_allow_sign_up }}
-client_id = {{ grafana_auth_google_client_id }}
-client_secret = {{ grafana_auth_google_client_secret }}
-scopes = {{ grafana_auth_google_scopes }}
-auth_url = {{ grafana_auth_google_auth_url }}
-token_url = {{ grafana_auth_google_token_url }}
-api_url = {{ grafana_auth_google_api_url }}
-allowed_domains = {{ grafana_auth_google_allowed_domains }}
+{% if grafana_auth_google_allow_sign_up is defined   %}allow_sign_up = {{ grafana_auth_google_allow_sign_up }}{% endif %}
+{% if grafana_auth_google_client_id is defined       %}client_id = {{ grafana_auth_google_client_id }}{% endif %}
+{% if grafana_auth_google_client_secret is defined   %}client_secret = {{ grafana_auth_google_client_secret }}{% endif %}
+{% if grafana_auth_google_scopes is defined          %}scopes = {{ grafana_auth_google_scopes }}{% endif %}
+{% if grafana_auth_google_auth_url is defined        %}auth_url = {{ grafana_auth_google_auth_url }}{% endif %}
+{% if grafana_auth_google_token_url is defined       %}token_url = {{ grafana_auth_google_token_url }}{% endif %}
+{% if grafana_auth_google_api_url is defined         %}api_url = {{ grafana_auth_google_api_url }}{% endif %}
+{% if grafana_auth_google_allowed_domains is defined %}allowed_domains = {{ grafana_auth_google_allowed_domains }}{% endif %}
 
 #################################### Auth Proxy ##########################
 [auth.proxy]
@@ -210,26 +238,26 @@ allowed_domains = {{ grafana_auth_google_allowed_domains }}
 
 #################################### Basic Auth ##########################
 [auth.basic]
-enabled = {{ grafana_auth_basic }}
+{% if grafana_auth_basic is defined %}enabled = {{ grafana_auth_basic }}{% endif %}
 
 #################################### Auth LDAP ##########################
 [auth.ldap]
 enabled = {{ grafana_auth_ldap_enabled }}
-config_file = {{ grafana_auth_ldap_config_file }}
+{% if grafana_auth_ldap_config_file is defined %}config_file = {{ grafana_auth_ldap_config_file }}{% endif %}
 
 #################################### SMTP / Emailing ##########################
 [smtp]
 enabled = {{ grafana_smtp_enabled }}
-host = {{ grafana_smtp_host }}
-user = {{ grafana_smtp_user }}
-password = {{ grafana_smtp_password }}
-cert_file = {{ grafana_smtp_cert_file }}
-key_file = {{ grafana_smtp_key_file }}
-skip_verify = {{ grafana_smtp_skip_verify }}
-from_address = {{ grafana_smtp_from_address }}
+{% if grafana_smtp_host is defined %}host = {{ grafana_smtp_host }}{% endif %}
+{% if grafana_smtp_user is defined %}user = {{ grafana_smtp_user }}{% endif %}
+{% if grafana_smtp_password is defined %}password = {{ grafana_smtp_password }}{% endif %}
+{% if grafana_smtp_cert_file is defined %}cert_file = {{ grafana_smtp_cert_file }}{% endif %}
+{% if grafana_smtp_key_file is defined %}key_file = {{ grafana_smtp_key_file }}{% endif %}
+{% if grafana_smtp_skip_verify is defined %}skip_verify = {{ grafana_smtp_skip_verify }}{% endif %}
+{% if grafana_smtp_from_address is defined %}from_address = {{ grafana_smtp_from_address }}{% endif %}
 
 [emails]
-welcome_email_on_sign_up = {{ grafana_welcome_email_on_sign_up }}
+{% if grafana_welcome_email_on_sign_up is defined %}welcome_email_on_sign_up = {{ grafana_welcome_email_on_sign_up }}{% endif %}
 
 #################################### Logging ##########################
 [log]

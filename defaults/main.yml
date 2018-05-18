@@ -1,81 +1,86 @@
 ---
 # HTTP configuration
 ## Bind address; empty means "*"
-grafana_http_addr: ""
-grafana_http_port: 3000
-grafana_enable_gzip: false
-grafana_domain: "{{ ansible_fqdn }}"
-grafana_enforce_domain: "false"
+# grafana_http_addr:
+# grafana_http_port: 3000
+# grafana_http_protocol: http
+# grafana_enable_gzip: false
+# grafana_domain: "{{ ansible_fqdn }}"
+# grafana_enforce_domain: "false"
+
+# Paths
+# grafana_data_path:
+# grafana_log_path:
+# grafana_plugins_path:
+# grafana_provisioning_path:
 
 # Database configuration
 grafana_database_type: sqlite3
-grafana_database_host: 127.0.0.1:3306
-grafana_database_name: grafana
-grafana_database_user: root
-grafana_database_password: ""
+# grafana_database_host:
+# grafana_database_name: 
+# grafana_database_user: 
+# grafana_database_password:
 
 # Security
-grafana_admin_user: admin
-grafana_admin_password: admin
-grafana_secret_key: ChangeMePlease
-
-grafana_login_remember_days: 7
-grafana_cookie_username: grafana_user
-grafana_cookie_remember_name: grafana_remeber
-
-grafana_disable_gravatar: "false"
+grafana_disable_gravatar: "true"
+# grafana_admin_user: 
+# grafana_admin_password: 
+# grafana_secret_key: 
+# grafana_login_remember_days:
+# grafana_cookie_username: 
+# grafana_cookie_remember_name: 
 
 # Users
-grafana_allow_sign_up: "true"
-grafana_allow_org_create: "true"
-grafana_auto_assign_org: "true"
-grafana_auto_assign_org_role: Viewer
-grafana_login_hint: email or username
+grafana_allow_sign_up: "false"
+# grafana_allow_org_create:
+# grafana_auto_assign_org:
+# grafana_auto_assign_org_role: 
+# grafana_login_hint:
 
 # Auth anonymous
 grafana_auth_anonymous_enabled: "false"
-grafana_auth_anonymous_org_name: Main Org.
-grafana_auth_anonymous_org_role: Viewer
+# grafana_auth_anonymous_org_name:
+# grafana_auth_anonymous_org_role:
 
 # Auth GitHub
 grafana_auth_github_enabled: "false"
-grafana_auth_github_allow_sign_up: "false"
-grafana_auth_github_client_id: some_id
-grafana_auth_github_client_secret: some_secret
-grafana_auth_github_scopes: user:email,read:org
-grafana_auth_github_auth_url: https://github.com/login/oauth/authorize
-grafana_auth_github_token_url: https://github.com/login/oauth/access_token
-grafana_auth_github_api_url: https://api.github.com/user
-grafana_auth_github_team_ids: ""
-grafana_auth_github_allowed_organizations: ""
+# grafana_auth_github_allow_sign_up: 
+# grafana_auth_github_client_id:
+# grafana_auth_github_client_secret:
+# grafana_auth_github_scopes: user:email,read:org
+# grafana_auth_github_auth_url: https://github.com/login/oauth/authorize
+# grafana_auth_github_token_url: https://github.com/login/oauth/access_token
+# grafana_auth_github_api_url: https://api.github.com/user
+# grafana_auth_github_team_ids:
+# grafana_auth_github_allowed_organizations:
 
 # Auth Google
 grafana_auth_google_enabled: "false"
-grafana_auth_google_allow_sign_up: "false"
-grafana_auth_google_client_id: some_client_id
-grafana_auth_google_client_secret: some_client_secret
-grafana_auth_google_scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
-grafana_auth_google_auth_url: https://accounts.google.com/o/oauth2/auth
-grafana_auth_google_token_url: https://accounts.google.com/o/oauth2/token
-grafana_auth_google_api_url: https://www.googleapis.com/oauth2/v1/userinfo
-grafana_auth_google_allowed_domains: ""
+#grafana_auth_google_allow_sign_up: "false"
+#grafana_auth_google_client_id: some_client_id
+#grafana_auth_google_client_secret: some_client_secret
+#grafana_auth_google_scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
+#grafana_auth_google_auth_url: https://accounts.google.com/o/oauth2/auth
+#grafana_auth_google_token_url: https://accounts.google.com/o/oauth2/token
+#grafana_auth_google_api_url: https://www.googleapis.com/oauth2/v1/userinfo
+#grafana_auth_google_allowed_domains: ""
 
 # Auth Basic
 grafana_auth_basic: "true"
 
 # Auth LDAP
 grafana_auth_ldap_enabled: "false"
-grafana_auth_ldap_config_file: /etc/grafana/ldap.toml
+# grafana_auth_ldap_config_file: /etc/grafana/ldap.toml
 
 # SMTP
 grafana_smtp_enabled: "false"
-grafana_smtp_host: localhost:25
-grafana_smtp_user: ""
-grafana_smtp_password: ""
-grafana_smtp_cert_file: ""
-grafana_smtp_key_file: ""
-grafana_smtp_skip_verify: "false"
-grafana_smtp_from_address: admin@grafana.localhost
+#grafana_smtp_host: localhost:25
+#grafana_smtp_user:
+#grafana_smtp_password:
+#grafana_smtp_cert_file:
+#grafana_smtp_key_file:
+#grafana_smtp_skip_verify: "false"
+#grafana_smtp_from_address:
 
 # Grafana Emails
 grafana_welcome_email_on_sign_up: "false"
