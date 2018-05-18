@@ -73,7 +73,7 @@ enforce_domain = {{ grafana_enforce_domain }}
 
 # The full public facing url
 {% if grafana_root_url is defined %}
-root_url = {{ grafana_root_url }}
+root_url = "{{ grafana_root_url }}"
 {% else %}
 root_url = %(protocol)s://%(domain)s:%(http_port)s/
 {% endif %}
@@ -138,7 +138,11 @@ cert_key = "{{ grafana_certificate_key }}"
 # No ip addresses are being tracked, only simple counters to track
 # running instances, dashboard and error counts. It is very helpful to us.
 # Change this option to false to disable reporting.
+{% if grafana_reporting_enabled is defined %}
+reporting_enabled = {{ grafana_reporting_enabled }}
+{% else %}
 ;reporting_enabled = true
+{% endif %}
 
 # Set to false to disable all checks to https://grafana.net
 # for new vesions (grafana itself and plugins), check is used
@@ -153,10 +157,10 @@ check_for_updates = true
 #################################### Security ####################################
 [security]
 # default admin user, created on startup
-admin_user = {{ grafana_admin_user }}
+admin_user = "{{ grafana_admin_user }}"
 
 # default admin password, can be changed before first start of grafana,  or in profile settings
-admin_password = {{ grafana_admin_password }}
+admin_password = "{{ grafana_admin_password }}"
 
 # used for signing
 {% if grafana_secret_key is defined %}
@@ -195,6 +199,12 @@ provider = {{ stortype }}
 {{ key }} = {{ value }}
 {%   endfor %}
 {% endfor %}
+
+#################################### Dashboards################################
+
+[dashboards]
+# Number dashboard versions to keep (per dashboard). Default: 20, Minimum: 1
+versions_to_keep = {{ grafana_dashboards_versions_to_keep }}
 
 #################################### Users ####################################
 [users]
