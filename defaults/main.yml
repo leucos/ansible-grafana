@@ -23,12 +23,12 @@ grafana_database_type: sqlite3
 
 # Security
 grafana_disable_gravatar: "true"
-# grafana_admin_user: 
-# grafana_admin_password: 
+# grafana_admin_user:
+# grafana_admin_password:
 # grafana_secret_key:
 # grafana_login_remember_days:
-# grafana_cookie_username: 
-# grafana_cookie_remember_name: 
+# grafana_cookie_username:
+# grafana_cookie_remember_name:
 
 # Users
 grafana_allow_sign_up: "false"
@@ -56,14 +56,14 @@ grafana_auth_github_enabled: "false"
 
 # Auth Google
 grafana_auth_google_enabled: "false"
-#grafana_auth_google_allow_sign_up: "false"
-#grafana_auth_google_client_id: some_client_id
-#grafana_auth_google_client_secret: some_client_secret
-#grafana_auth_google_scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
-#grafana_auth_google_auth_url: https://accounts.google.com/o/oauth2/auth
-#grafana_auth_google_token_url: https://accounts.google.com/o/oauth2/token
-#grafana_auth_google_api_url: https://www.googleapis.com/oauth2/v1/userinfo
-#grafana_auth_google_allowed_domains: ""
+# grafana_auth_google_allow_sign_up: "false"
+# grafana_auth_google_client_id: some_client_id
+# grafana_auth_google_client_secret: some_client_secret
+# grafana_auth_google_scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
+# grafana_auth_google_auth_url: https://accounts.google.com/o/oauth2/auth
+# grafana_auth_google_token_url: https://accounts.google.com/o/oauth2/token
+# grafana_auth_google_api_url: https://www.googleapis.com/oauth2/v1/userinfo
+# grafana_auth_google_allowed_domains: ""
 
 # Auth Basic
 grafana_auth_basic: "true"
@@ -74,13 +74,13 @@ grafana_auth_ldap_enabled: "false"
 
 # SMTP
 grafana_smtp_enabled: "false"
-#grafana_smtp_host: localhost:25
-#grafana_smtp_user:
-#grafana_smtp_password:
-#grafana_smtp_cert_file:
-#grafana_smtp_key_file:
-#grafana_smtp_skip_verify: "false"
-#grafana_smtp_from_address:
+# grafana_smtp_host: localhost:25
+# grafana_smtp_user:
+# grafana_smtp_password:
+# grafana_smtp_cert_file:
+# grafana_smtp_key_file:
+# grafana_smtp_skip_verify: "false"
+# grafana_smtp_from_address:
 
 # Grafana Emails
 grafana_welcome_email_on_sign_up: "false"
