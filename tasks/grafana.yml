@@ -6,12 +6,12 @@
 
 - name: Imports grafana apt key
   apt_key:
-    url: https://packagecloud.io/gpg.key
+    url: https://packages.grafana.com/gpg.key
     state: present
 
 - name: Adds grafana repository
   apt_repository:
-    repo: "deb https://packagecloud.io/grafana/stable/debian/ wheezy main"
+    repo: "deb https://packages.grafana.com/oss/deb stable main"
     state: present
     update_cache: true
 
@@ -27,7 +27,7 @@
     owner: root
     group: grafana
     mode: 0640
-    backup: yes
+    backup: true
   notify: ['Restart grafana']
 
 - name: Ensure grafana starts at boot
